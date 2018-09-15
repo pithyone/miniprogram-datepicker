@@ -1,19 +1,16 @@
 <view class="page">
     <view class="page__hd">
-        <view class="page__title">Picker</view>
-        <view class="page__desc">选择器，这里使用小程序原生的picker。</view>
+        <view class="page__title">日期选择器</view>
+        <view class="page__desc">使用小程序原生picker，支持农历。</view>
     </view>
     <view class="page__bd">
         <view class="weui-btn-area">
-            <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-                <button type="default">单列选择器</button>
-            </picker>
-            <picker class="weui-btn" mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
-                <button type="default">时间选择器</button>
-            </picker>
-            <picker class="weui-btn" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-                <button type="default">日期选择器</button>
-            </picker>
+            <comp value="{{solar}}" bindchange="bindSolarChange">
+                <button type="default">公历</button>
+            </comp>
+            <comp value="{{lunar}}" chinese="{{true}}" bindchange="bindLunarChange" picker-class="weui-btn">
+                <button type="default">农历</button>
+            </comp>
         </view>
     </view>
 </view>
