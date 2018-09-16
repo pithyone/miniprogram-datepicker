@@ -1,7 +1,7 @@
 {
   "name": "miniprogram-datepicker",
   "version": "0.1.0",
-  "description": "",
+  "description": "miniprogram datepicker",
   "main": "miniprogram_dist/index.js",
   "scripts": {
     "dev": "gulp dev --develop",
@@ -20,7 +20,8 @@
     "testEnvironment": "jsdom",
     "testURL": "https://jest.test",
     "collectCoverageFrom": [
-      "src/**/*.js"
+      "src/**/*.js",
+      "!src/utils/calendar.js"
     ],
     "moduleDirectories": [
       "node_modules",
