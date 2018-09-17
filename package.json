@@ -32,6 +32,10 @@
     "type": "git",
     "url": "https://github.com/pithyone/miniprogram-datepicker.git"
   },
+  "keywords": [
+    "miniprogram",
+    "datepicker"
+  ],
   "author": "王兵",
   "license": "MIT",
   "devDependencies": {
