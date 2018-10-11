@@ -11,10 +11,12 @@ Component({
     value: {
       type: String,
       value: '',
+      observer: '_init',
     },
     chinese: {
       type: Boolean,
       value: false,
+      observer: '_init',
     },
   },
   lifetimes: {
