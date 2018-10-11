@@ -31,7 +31,7 @@ Component({
       const value = e.detail.value
       const [y, m, d] = [value[0] + start, value[1] + 1, value[2] + 1]
 
-      this.triggerEvent('change', {value: y + '-' + m + '-' + d})
+      this.triggerEvent('change', {value: y + '-' + this._fill(m) + '-' + this._fill(d)})
     },
     _bindcolumnchange(e) {
       const multiArray = this.data.multiArray
@@ -100,6 +100,9 @@ Component({
     _computedMonthDays(y, m) {
       const day = calendar.monthDays(y, m)
       return Array.from(new Array(day), (val, index) => calendar.toChinaDay(index + 1))
+    },
+    _fill(d) {
+      return (d < 10 ? '0' : '') + d
     },
   },
 })
