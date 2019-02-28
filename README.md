@@ -1,5 +1,7 @@
-<a href="https://travis-ci.org/pithyone/miniprogram-datepicker"><img alt="Travis Status" src="https://img.shields.io/travis/pithyone/miniprogram-datepicker/master.svg?style=flat-square"></a>
 <a href="https://www.npmjs.com/package/miniprogram-datepicker"><img alt="npm" src="https://img.shields.io/npm/v/miniprogram-datepicker.svg?style=flat-square"></a>
+<a href="https://travis-ci.org/pithyone/miniprogram-datepicker"><img alt="Travis Status" src="https://img.shields.io/travis/pithyone/miniprogram-datepicker/master.svg?style=flat-square"></a>
+<a href="https://codecov.io/gh/pithyone/miniprogram-datepicker"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/pithyone/miniprogram-datepicker.svg?style=flat-square"></a>
+<a href="https://github.com/pithyone/miniprogram-datepicker"><img alt="GitHub" src="https://img.shields.io/github/license/pithyone/miniprogram-datepicker.svg?style=flat-square"></a>
 
 # miniprogram-datepicker
 
@@ -8,8 +10,7 @@
 > 使用此组件需要依赖小程序基础库 2.2.1 以上版本，同时依赖开发者工具的 npm 构建。具体详情可查阅[官方 npm 文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)。
 
 ## 使用效果
-![solar](./docs/solar.png)
-![lunar](./docs/lunar.png)
+![Screenshot](./docs/screenshot.png)
 
 ## 使用方法
 
@@ -37,8 +38,8 @@ datepicker 提供`<slot>`节点，用于承载组件引用时提供的子节点�
 <datepicker value="{{solar}}" bindchange="bindSolarChange">
     <button type="default">公历</button>
 </datepicker>
-<datepicker value="{{lunar}}" chinese="{{true}}" bindchange="bindLunarChange" picker-class="weui-btn">
-    <button type="default">农历</button>
+<datepicker value="{{lunar}}" chinese="{{true}}" bindchange="bindLunarChange">
+    <button type="default" class="weui-btn">农历</button>
 </datepicker>
 ```
 
@@ -48,6 +49,5 @@ datepicker 提供`<slot>`节点，用于承载组件引用时提供的子节点�
 |-------------------------|--------------|-----------------------|-----------------------------------------------------------|
 | value                   | String       | ''                    | 表示选中的日期，格式为"YYYY-MM-DD"                           |
 | chinese                 | Boolean      | false                 | 是否农历                                                   |
-| picker-class            | String       |                       | 外部样式类                                                 |
 | bindchange              | EventHandle  |                       | value 改变时触发 change 事件，event.detail = {value: value} |
 
