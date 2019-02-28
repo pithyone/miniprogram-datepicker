@@ -1,4 +1,10 @@
-<picker mode="multiSelector" range="{{multiArray}}" value="{{multiIndex}}" bindchange="_bindchange"
-        bindcolumnchange="_bindcolumnchange" bindcancel="_bindcancel" class="picker-class">
+<picker
+        mode="multiSelector"
+        bindchange="_bindMultiPickerChange"
+        bindcolumnchange="_bindMultiPickerColumnChange"
+        bindcancel="_bindMultiPickerCancel"
+        value="{{multiIndex}}"
+        range="{{multiArray}}"
+>
     <slot></slot>
 </picker>

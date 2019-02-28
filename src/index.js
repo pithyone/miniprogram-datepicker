@@ -1,4 +1,4 @@
-const calendar = require('utils/calendar')
+const calendar = require('calendar')
 
 const start = 1901
 const years = Array.from(new Array(200), (val, index) => index + start + '年')
@@ -6,7 +6,6 @@ const months = Array.from(new Array(12), (val, index) => index + 1 + '月')
 const chinaMonths = Array.from(new Array(12), (val, index) => calendar.toChinaMonth(index + 1))
 
 Component({
-  externalClasses: ['picker-class'],
   properties: {
     value: {
       type: String,
@@ -25,7 +24,7 @@ Component({
     },
   },
   methods: {
-    _bindchange(e) {
+    _bindMultiPickerChange(e) {
       this.setData({
         multiIndex: e.detail.value,
       })
@@ -33,9 +32,9 @@ Component({
       const value = e.detail.value
       const [y, m, d] = [value[0] + start, value[1] + 1, value[2] + 1]
 
-      this.triggerEvent('change', {value: y + '-' + this._fill(m) + '-' + this._fill(d)})
+      this.triggerEvent('change', {value: y + '-' + this._dateFormat(m) + '-' + this._dateFormat(d)})
     },
-    _bindcolumnchange(e) {
+    _bindMultiPickerColumnChange(e) {
       const multiArray = this.data.multiArray
       const multiIndex = this.data.multiIndex
 
@@ -51,9 +50,9 @@ Component({
       }
 
       if (this.data.chinese) {
-        multiArray[2] = this._computedMonthDays(y, m)
+        multiArray[2] = this._monthDaysCompute(y, m)
       } else {
-        multiArray[2] = this._computedSolarDays(y, m)
+        multiArray[2] = this._solarDaysCompute(y, m)
       }
 
       this.setData({
@@ -61,7 +60,7 @@ Component({
         multiIndex,
       })
     },
-    _bindcancel() {
+    _bindMultiPickerCancel() {
       this._init()
     },
     _init() {
@@ -71,27 +70,27 @@ Component({
         [y, m, d] = this.data.value.split('-')
           .map(Number)
       } else {
-        const day = new Date();
-        [y, m, d] = [day.getFullYear(), day.getMonth() + 1, day.getDate()]
+        const lunar = calendar.solar2lunar();
+        [y, m, d] = [lunar.cYear, lunar.cMonth, lunar.cDay]
       }
 
       if (this.data.chinese) {
         const day = this.data.value ? calendar.lunar2solar(y, m, d) : calendar.solar2lunar(y, m, d);
         [y, m, d] = [day.lYear, day.lMonth, day.lDay]
-        const days = this._computedMonthDays(y, m)
+        const days = this._monthDaysCompute(y, m)
         this.setData({
           multiArray: [years, chinaMonths, days],
           multiIndex: [y - start, m - 1, d - 1],
         })
       } else {
-        const days = this._computedSolarDays(y, m)
+        const days = this._solarDaysCompute(y, m)
         this.setData({
           multiArray: [years, months, days],
           multiIndex: [y - start, m - 1, d - 1],
         })
       }
     },
-    _computedSolarDays(y, m) {
+    _solarDaysCompute(y, m) {
       const day = calendar.solarDays(y, m)
       return Array.from(new Array(day), (val, index) => {
         const date = index + 1
@@ -99,12 +98,12 @@ Component({
         return date + '日 ' + lunar.ncWeek
       })
     },
-    _computedMonthDays(y, m) {
+    _monthDaysCompute(y, m) {
       const day = calendar.monthDays(y, m)
       return Array.from(new Array(day), (val, index) => calendar.toChinaDay(index + 1))
     },
-    _fill(d) {
-      return (d < 10 ? '0' : '') + d
+    _dateFormat(n) {
+      return (n < 10 ? '0' : '') + n
     },
   },
 })

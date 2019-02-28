@@ -8,8 +8,8 @@
             <comp value="{{solar}}" bindchange="bindSolarChange">
                 <button type="default">公历</button>
             </comp>
-            <comp value="{{lunar}}" chinese="{{true}}" bindchange="bindLunarChange" picker-class="weui-btn">
-                <button type="default">农历</button>
+            <comp value="{{lunar}}" chinese="{{true}}" bindchange="bindLunarChange">
+                <button type="default" class="weui-btn">农历</button>
             </comp>
         </view>
     </view>
