@@ -51,3 +51,8 @@ datepicker 提供`<slot>`节点，用于承载组件引用时提供的子节点�
 | chinese                 | Boolean      | false                 | 是否农历                                                   |
 | bindchange              | EventHandle  |                       | value 改变时触发 change 事件，event.detail = {value: value} |
 
+## 应用案例
+
+<div>
+    <img src="https://user-images.githubusercontent.com/8215934/53634691-cc5c5280-3c55-11e9-9d55-52a4fc5a2f83.jpg" width="100" title="倒数时光"/>
+</div>
