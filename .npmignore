@@ -14,4 +14,9 @@ docs
 miniprogram_dev
 node_modules
 coverage
+.github
+
+.babelrc
+.eslintrc.js
+gulpfile.js
 tsconfig.json
