@@ -1,8 +1,13 @@
 # miniprogram-datepicker
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pithyone/miniprogram-datepicker/Node.js%2520CI?style=flat-square)
-![Codecov](https://img.shields.io/codecov/c/github/pithyone/miniprogram-datepicker?style=flat-square)
-![npm](https://img.shields.io/npm/v/miniprogram-datepicker?style=flat-square)
+<p>
+  <a href="https://github.com/pithyone/miniprogram-datepicker/actions?query=workflow%3A%22Node.js+CI%22">
+    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/pithyone/miniprogram-datepicker/Node.js%20CI?style=flat-square"></a>
+  <a href="https://codecov.io/gh/pithyone/miniprogram-datepicker">
+    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/pithyone/miniprogram-datepicker?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/miniprogram-datepicker">
+    <img alt="npm" src="https://img.shields.io/npm/v/miniprogram-datepicker?style=flat-square"></a>
+</p>
 
 小程序日期选择器，使用 `picker` 组件（多列选择器）实现，支持农历
 
