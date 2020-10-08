@@ -1,28 +1,25 @@
-<a href="https://www.npmjs.com/package/miniprogram-datepicker"><img alt="npm" src="https://img.shields.io/npm/v/miniprogram-datepicker.svg?style=flat-square"></a>
-<a href="https://travis-ci.org/pithyone/miniprogram-datepicker"><img alt="Travis Status" src="https://img.shields.io/travis/pithyone/miniprogram-datepicker/master.svg?style=flat-square"></a>
-<a href="https://codecov.io/gh/pithyone/miniprogram-datepicker"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/pithyone/miniprogram-datepicker.svg?style=flat-square"></a>
-<a href="https://github.com/pithyone/miniprogram-datepicker"><img alt="GitHub" src="https://img.shields.io/github/license/pithyone/miniprogram-datepicker.svg?style=flat-square"></a>
-
 # miniprogram-datepicker
 
-小程序日期选择器，使用小程序原生picker，支持农历。
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pithyone/miniprogram-datepicker/Node.js%2520CI?style=flat-square)
+![Codecov](https://img.shields.io/codecov/c/github/pithyone/miniprogram-datepicker?style=flat-square)
+![npm](https://img.shields.io/npm/v/miniprogram-datepicker?style=flat-square)
 
-> 使用此组件需要依赖小程序基础库 2.2.1 以上版本，同时依赖开发者工具的 npm 构建。具体详情可查阅[官方 npm 文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)。
+小程序日期选择器，使用 `picker` 组件（多列选择器）实现，支持农历
 
 ## 使用效果
-![Screenshot](./docs/screenshot.png)
+![Screenshot](https://wx1.sinaimg.cn/mw690/8f1f41a9ly1gjhswfi6anj20u00ymabo.jpg)
 
 ## 使用方法
 
-1. 安装 datepicker
+1. 安装
 
 ```
 npm install --save miniprogram-datepicker
 ```
 
-2. 在需要使用 datepicker 的页面 page.json 中添加 datepicker 自定义组件配置
+2. JSON 组件声明
 
-```json
+```
 {
   "usingComponents": {
     "datepicker": "miniprogram-datepicker"
@@ -30,29 +27,37 @@ npm install --save miniprogram-datepicker
 }
 ```
 
-3. WXML 文件中引用 datepicker
+3. wxml 引入组件
 
-datepicker 提供`<slot>`节点，用于承载组件引用时提供的子节点。
-
-``` xml
-<datepicker value="{{solar}}" bindchange="bindSolarChange">
-    <button type="default">公历</button>
-</datepicker>
-<datepicker value="{{lunar}}" chinese="{{true}}" bindchange="bindLunarChange">
-    <button type="default" class="weui-btn">农历</button>
+```
+<datepicker bindchange="bindDateChange" value="{{value}}">
+    <view>{{valueOfString}}</view>
 </datepicker>
 ```
 
-**datepicker的属性介绍如下：**
+## 属性列表
 
-| 属性名                   | 类型         | 默认值                 | 说明                                                       |
-|-------------------------|--------------|-----------------------|-----------------------------------------------------------|
-| value                   | String       | ''                    | 表示选中的日期，格式为"YYYY-MM-DD"                           |
-| chinese                 | Boolean      | false                 | 是否农历                                                   |
-| bindchange              | EventHandle  |                       | value 改变时触发 change 事件，event.detail = {value: value} |
+| 属性名 | 类型 | 默认值 | 说明 |
+|-|-|-|-|
+| value | Object | 当天 | 表示选中的日期 |
+| bindchange | eventhandle | | value 改变时触发 change 事件，event.detail = {value} |
+
+## value 的结构
+
+| 属性 | 类型 | 说明 |
+|-|-|-|
+| year | number | 年 |
+| month | number | 月 |
+| day | number | 日 |
+| isLeapMonth | boolean | 是否闰月 |
+| isLunarCalendar | boolean | 是否农历 |
+
+## 示例代码
+
+参考 :point_right: [demo](https://github.com/pithyone/miniprogram-datepicker/tree/master/tools/demo)
 
 ## 应用案例
 
 <div>
-    <img src="https://user-images.githubusercontent.com/8215934/53634691-cc5c5280-3c55-11e9-9d55-52a4fc5a2f83.jpg" width="100" title="倒数时光"/>
+    <img src="https://wx3.sinaimg.cn/mw690/8f1f41a9ly1gjhy3jqkepj2076076wfc.jpg" width="100" title="倒数时光"/>
 </div>

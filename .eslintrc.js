@@ -1,47 +1,42 @@
 module.exports = {
   'extends': [
-    'airbnb-base',
-    'plugin:promise/recommended'
+    'eslint:recommended',
+    'plugin:promise/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
   ],
+  'parser': '@typescript-eslint/parser',
   'parserOptions': {
     'ecmaVersion': 9,
     'ecmaFeatures': {
-      'jsx': false
+      'jsx': false,
     },
-    'sourceType': 'module'
+    'sourceType': 'module',
   },
   'env': {
     'es6': true,
     'node': true,
-    'jest': true
+    'jest': true,
   },
   'plugins': [
-    'import',
     'node',
-    'promise'
+    'promise',
+    '@typescript-eslint',
   ],
   'rules': {
     'arrow-parens': 'off',
     'comma-dangle': [
       'error',
-      'only-multiline'
+      'only-multiline',
     ],
-    'complexity': ['error', 10],
+    'complexity': ['error', 20],
     'func-names': 'off',
     'global-require': 'off',
     'handle-callback-err': [
       'error',
-      '^(err|error)$'
+      '^(err|error)$',
     ],
-    'import/no-unresolved': [
-      'error',
-      {
-        'caseSensitive': true,
-        'commonjs': true,
-        'ignore': ['^[^.]']
-      }
-    ],
-    'import/prefer-default-export': 'off',
     'linebreak-style': 'off',
     'no-catch-shadow': 'error',
     'no-continue': 'off',
@@ -56,7 +51,7 @@ module.exports = {
     'node/process-exit-as-throw': 'error',
     'object-curly-spacing': [
       'error',
-      'never'
+      'never',
     ],
     'operator-linebreak': [
       'error',
@@ -64,9 +59,9 @@ module.exports = {
       {
         'overrides': {
           ':': 'before',
-          '?': 'before'
-        }
-      }
+          '?': 'before',
+        },
+      },
     ],
     'prefer-arrow-callback': 'off',
     'prefer-destructuring': 'off',
@@ -75,13 +70,18 @@ module.exports = {
       1,
       'as-needed',
       {
-        'unnecessary': true
-      }
+        'unnecessary': true,
+      },
     ],
     'semi': [
       'error',
-      'never'
-    ]
+      'never',
+    ],
+    'no-await-in-loop': 'off',
+    'no-restricted-syntax': 'off',
+    'promise/always-return': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
   'globals': {
     'window': true,
@@ -92,5 +92,5 @@ module.exports = {
     'Behavior': true,
     'wx': true,
     'getCurrentPages': true,
-  }
+  },
 }

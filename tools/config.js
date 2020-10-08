@@ -12,7 +12,7 @@ const dev = path.join(demoDist, 'components')
 const dist = path.resolve(__dirname, '../miniprogram_dist')
 
 module.exports = {
-  entry: ['index'],
+  entry: ['index', 'lib'],
 
   isDev,
   isWatch,
@@ -27,6 +27,10 @@ module.exports = {
     sourcemap: false, // 生成 less sourcemap
   },
 
+  js: {
+    webpack: true, // 使用 webpack 来构建 js
+  },
+
   webpack: {
     mode: 'production',
     output: {
@@ -34,20 +38,45 @@ module.exports = {
       libraryTarget: 'commonjs2',
     },
     target: 'node',
-    externals: [nodeExternals()], // 忽略 node_modules
+    externals: [nodeExternals(), './lib'], // 忽略 node_modules
     module: {
       rules: [{
         test: /\.js$/i,
-        use: [
-          'babel-loader',
-          'eslint-loader'
-        ],
+        use: [{
+          loader: 'thread-loader',
+        }, {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        }, {
+          loader: 'eslint-loader',
+        }],
         exclude: /node_modules/
+      }, {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'thread-loader',
+        }, {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        }, {
+          loader: 'ts-loader',
+          options: {
+            appendTsSuffixTo: [/\.vue$/],
+            happyPackMode: true,
+          },
+        }, {
+          loader: 'eslint-loader',
+        }],
       }],
     },
     resolve: {
       modules: [src, 'node_modules'],
-      extensions: ['.js', '.json'],
+      extensions: ['.ts', '.js', '.json'],
     },
     plugins: [
       new webpack.DefinePlugin({}),
@@ -56,12 +85,10 @@ module.exports = {
     optimization: {
       minimize: false,
     },
-    // devtool: 'nosources-source-map', // 生成 js sourcemap
+    devtool: 'source-map', // 生成 js sourcemap
     performance: {
       hints: 'warning',
       assetFilter: assetFilename => assetFilename.endsWith('.js')
     }
   },
-
-  copy: ['./images'], // 将会复制到目标目录
 }
